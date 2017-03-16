@@ -11,17 +11,18 @@ Leest Oppervlakte eiwit HIV1 in en shuffled de sequentie
 
 """
 
+
 import random
 import re
 
 def main():
     bestand1 = bstnd1()
     #print(bestand1)
-    codes = code(bestand1)
-    
-    
-    
-    
+    code(bestand1)
+
+
+
+
 def bstnd1():
     bestand = open('hiv1opp.fasta').read()
     return bestand
@@ -36,10 +37,10 @@ def code(bestand):
     n = enter.end()
     file = bestand[n::]
     file = re.sub('\n', '', file)
-    
+
     for x in file:
         seq.append(x)
-    
+
     original = ''.join(seq)
     #print('Originele sequentie: ',original, '\n')
 
@@ -47,48 +48,30 @@ def code(bestand):
         random.shuffle(seq)
         string = ''.join(seq)
         variants.append(string)
-        
+
     #print(variants)
-    
-    
-    
+
+
+
     #print(open('fastas.txt').read())
     x = 1
     fasta = open('fastas.txt', 'w')
     fasta.write('>HIV1originalsequence\n')
     fasta.write(original)
     fasta.write('\n\n')
-    
-    
+
+
     for sequence in variants:
-        
+
         writing = '>HIV1randomsequences' + str(x)
         fasta.write(writing)
         fasta.write('\n')
         fasta.write(sequence)
         fasta.write('\n\n')
         x += 1
-     
+
     fasta.close()
-    print(open('fastas.txt').read())    
-    
-    
+    print(open('fastas.txt').read())
+
+
 main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
